@@ -2,69 +2,69 @@
 
 ## Table: departments
 
-- id
-- name
-- address
-- phone
-- mail
+- id SMALLINT PK AI UNIQUE NOTNULL
+- name VARCHAR(255) UNIQUE NOTNULL
+- address VARCHAR(255) NULL
+- phone VARCHAR(20) NULL UNIQUE
+- mail VARCHAR(100) NULL UNIQUE
 
 ## Table: degrees
 
-- id
-- department_id FK
-- name 
-- type
-- duration
-- degrees_url
+- id SMALLINT PK AI UNIQUE NOTNULL
+- department_id SMALLINT FK NOTNULL
+- name VARCHAR(255) UNIQUE NOTNULL
+- type VARCHAR(70) NOTNULL
+- duration VARCHAR(20) NULL
+- degrees_url VARCHAR(255) NULL
 
 ## Table: courses
 
-- id
-- degree_id FK
-- name
-- year
-- semester
-- cfu 
+- id SMALLINT PK AI UNIQUE NOTNULL
+- degree_id SMALLINT FK NOTNULL
+- name VARCHAR(255) NOTNULL
+- year VARCHAR(10) NULL
+- semester VARCHAR(20) NULL
+- cfu TINYINT NULL
 
 ## Table: teachers
 
-- id 
-- name
-- surname 
-- office_address
-- phone
-- mail 
+- id SMALLINT PK AI UNIQUE NOTNULL
+- name VARCHAR(30) NOTNULL
+- surname VARCHAR(30) NOTNULL
+- office_address VARCHAR(255) NULL
+- phone VARCHAR(20) NULL 
+- mail VARCHAR(100) NULL UNIQUE
 
 ## Table (pivot): course_teacher
 
-- id 
-- course_id FK
-- teacher_id FK
+- id SMALLINT PK AI UNIQUE NOTNULL
+- course_id SMALLINT FK 
+- teacher_id SMALLINT FK
 
 ## Table: exams
 
-- id 
-- course_id FK
-- date
-- time 
-- location
+- id MEDIUMINT PK AI UNIQUE NOTNULL
+- course_id SMALLINT FK NOTNULL
+- date DATE NOTNULL
+- time TIME NOTNULL
+- location VARCHAR(255) NULL
 
 ## Table: students
 
-- id 
-- degree_id 
-- name 
-- surname 
-- birth_date
-- CF
-- phone
-- mail
-- registration_number 
-- date_of_enrolment
+- id MEDIUMINT PK AI UNIQUE NOTNULL
+- degree_id SMALLINT FK NOTNULL
+- name VARCHAR(30) NOTNULL
+- surname VARCHAR(30) NOTNULL
+- birth_date DATE NULL
+- CF VARCHAR(20) NOTNULL UNIQUE
+- phone VARCHAR(20) NULL UNIQUE
+- mail VARCHAR(100) NULL UNIQUE
+- registration_number VARCHAR(30) NOTNULL UNIQUE
+- date_of_enrolment DATE NULL 
 
 ## Table (pivot): student_exam
 
-- id 
-- student_id
-- exam_id
-- vote
+- id MEDIUMINT PK AI UNIQUE NOTNULL
+- student_id MEDIUMINT FK 
+- exam_id MEDIUMINT FK
+- vote TINYINT NOTNULL
